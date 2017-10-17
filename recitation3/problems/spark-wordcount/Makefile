@@ -14,7 +14,7 @@ run: inputs
 	./wordcount-spark.py $(INPUT_DIR)/astro_02 | sort -n -t: -k2 > output.txt
 	hdfs dfs -copyFromLocal output.txt $(OUTPUT_DIR)
 
-run-local:
+run-test:
 	(unset HADOOP_CONF_DIR; \
 	 unset SPARK_YARN_USER_ENV; \
 	 $(SPARK_HOME)/spark-submit --master local[2] --deploy-mode client ./wordcount-spark.py ./input/astro_02 | sort -n -t: -k2 )
