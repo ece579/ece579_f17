@@ -12,7 +12,7 @@ object WordCount {
     val sc = new SparkContext(conf)
 
     //Read some example file to a test RDD
-    val test = sc.textFile("scala-wordcount/input/input.txt")
+    val test = sc.textFile("input/input.txt")
 
     test.flatMap { line => //for each line
       line.split(" ") //split the line in word by word.
@@ -21,7 +21,7 @@ object WordCount {
         (word, 1) //Return a key/value tuple, with the word as key and 1 as value
       }
       .reduceByKey(_ + _) //Sum all of the value with same key
-      .saveAsTextFile("scala-wordcount/output/") //Save output
+      .saveAsTextFile("output/") //Save output
 
     //Stop the Spark context
     sc.stop
